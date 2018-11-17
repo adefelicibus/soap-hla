@@ -1,0 +1,38 @@
+{% set name = "soap-hla" %}
+{% set version = "1.0.0" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  git_rev: master
+  git_url: https://gitlab.com/adefelicibus/soap-hla
+
+build:
+  number: 1
+
+requirements:
+  host:
+    - gcc
+    - perl
+    - zlib
+  run:
+    - gcc
+    - perl
+    - zlib
+    - python
+    - perl-getopt-long
+
+about:
+  home: https://gitlab.com/adefelicibus/soap-hla
+  license: BSD
+  license_family: BSD
+  license_file: 
+  summary: A flow of sequencing data analysis pipeline to type all of the HLA genes in IMGT/HLA database using capture sequenced data or WGS data with high accuracy.
+  doc_url: http://soap.genomics.org.cn/SOAP-HLA.html
+  dev_url: 
+
+extra:
+  recipe-maintainers:
+    - adefelicibus
