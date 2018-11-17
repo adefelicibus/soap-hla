@@ -29,13 +29,13 @@ requirements:
     - perl-pathtools
     - perl-getopt-long
 
-# test:
-#   commands:
-#     - MHC_autopipeline
-#     - MHC_ld2pretype_score
-#     - MHC_sam2snp_blast
-#     - MHC_snp2ld_assemble
-#     - MHC_typing_construct
+test:
+  commands:
+    - MHC_autopipeline
+    - MHC_ld2pretype_score
+    - MHC_sam2snp_blast
+    - MHC_snp2ld_assemble
+    - MHC_typing_construct
 
 about:
   home: https://gitlab.com/adefelicibus/soap-hla
