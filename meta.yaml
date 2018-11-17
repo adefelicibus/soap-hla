@@ -10,29 +10,32 @@ source:
   git_url: https://gitlab.com/adefelicibus/soap-hla
 
 build:
-  number: 1
+  number: 2
 
 requirements:
+  host:
+    - perl 5.26.2
+    - gcc
+    - zlib
   build:
-    - perl
+    - perl 5.26.2
     - gcc
     - zlib
   run:
     - gcc
-    - perl
+    - perl 5.26.2
     - zlib
     - python
     - perl-pathtools
     - perl-getopt-long
 
-
-# test:
-#   commands:
-#     - perl MHC_autopipeline
-#     - perl MHC_ld2pretype_score
-#     - perl MHC_sam2snp_blast
-#     - perl MHC_snp2ld_assemble
-#     - perl MHC_typing_construct
+test:
+  commands:
+    - MHC_autopipeline
+    - MHC_ld2pretype_score
+    - MHC_sam2snp_blast
+    - MHC_snp2ld_assemble
+    - MHC_typing_construct
 
 about:
   home: https://gitlab.com/adefelicibus/soap-hla

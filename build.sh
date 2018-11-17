@@ -5,6 +5,8 @@ echo "Running the build.sh Script"
 mkdir -p $PREFIX/bin/
 mkdir -p $PREFIX/share/
 
+export PERL5LIB="$CONDA_PREFIX/lib/5.26.2/"
+
 echo "Adding SOAD-HLA data"
 cp -r $SRC_DIR/data/ $PREFIX/share/database
 
