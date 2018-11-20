@@ -7,7 +7,7 @@ package:
 
 source:
   git_rev: master
-  git_url: https://gitlab.com/adefelicibus/soap-hla
+  git_url: https://github.com/adefelicibus/soap-hla.git
 
 build:
   number: 2
@@ -38,7 +38,7 @@ test:
     - MHC_typing_construct
 
 about:
-  home: https://gitlab.com/adefelicibus/soap-hla
+  home: https://github.com/adefelicibus/soap-hla.git
   license: BSD
   license_family: BSD
   license_file: 
