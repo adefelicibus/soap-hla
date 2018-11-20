@@ -29,14 +29,6 @@ requirements:
     - perl-pathtools
     - perl-getopt-long
 
-test:
-  commands:
-    - MHC_autopipeline -h
-    - MHC_ld2pretype_score -h
-    - MHC_sam2snp_blast -h
-    - MHC_snp2ld_assemble -h
-    - MHC_typing_construct -h
-
 about:
   home: https://github.com/adefelicibus/soap-hla.git
   license: BSD
