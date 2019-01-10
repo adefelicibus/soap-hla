@@ -10,7 +10,7 @@ source:
   git_url: https://github.com/adefelicibus/soap-hla.git
 
 build:
-  number: 2
+  number: 3
 
 requirements:
   host:

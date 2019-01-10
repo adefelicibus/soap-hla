@@ -18,6 +18,7 @@ touch $PREFIX/bin/MHC_ld2pretype_score
 touch $PREFIX/bin/MHC_sam2snp_blast
 touch $PREFIX/bin/MHC_snp2ld_assemble
 touch $PREFIX/bin/MHC_typing_construct
+touch $PREFIX/bin/MHC.hg19.databasae
 
 chmod 755 $PREFIX/bin/MHC_autopipeline
 chmod 755 $PREFIX/bin/MHC_ld2pretype_score
@@ -33,3 +34,4 @@ cat $SRC_DIR/src/MHC_ld2pretype_score.pl >> $PREFIX/bin/MHC_ld2pretype_score
 cat $SRC_DIR/src/MHC_sam2snp_blast.pl >> $PREFIX/bin/MHC_sam2snp_blast
 cat $SRC_DIR/src/MHC_snp2ld_assemble.pl >> $PREFIX/bin/MHC_snp2ld_assemble
 cat $SRC_DIR/src/MHC_typing_construct.pl >> $PREFIX/bin/MHC_typing_construct
+cat $SRC_DIR/src/MHC.hg19.databasael >> $PREFIX/bin/MHC.hg19.databasae
