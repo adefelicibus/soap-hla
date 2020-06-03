@@ -18,7 +18,8 @@ my$version = $ARGV[1]||"hg19";
 my($sample,$gene) = (split /[\._]/,basename$ARGV[0])[0,-2];
 my$path = dirname$ARGV[0];
 my$pos_mhc = "$Bin/MHC.$version.database";
-my$mhc_type = "$Bin/Data_type_$version/$gene.type";
+#my$mhc_type = "$Bin/Data_type_$version/$gene.type";
+my$mhc_type = "$ENV{'CONDA_PREFIX'}/share/database/Data_type_$version/$gene.type";
 my($pos_start,$pos_end,%data,%hash);
 
 open IN,"< $pos_mhc" or die "$!\n";

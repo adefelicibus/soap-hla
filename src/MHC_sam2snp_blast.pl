@@ -18,7 +18,8 @@ my$version = $ARGV[1]||"hg19";
 my($sample,$gene) = (split /[\._]/,basename$ARGV[0])[0,-2];
 my$path = dirname$ARGV[0];
 my$pos_mhc = "$Bin/MHC.$version.database";
-my$mhc_type = "$Bin/Data_type_$version/$gene.type";
+#my$mhc_type = "$Bin/Data_type_$version/$gene.type";
+my$mhc_type = "$ENV{'CONDA_PREFIX'}/share/database/Data_type_$version/$gene.type";
 my($pos_start,$pos_end,%data,%reads);
 
 open IN,"< $pos_mhc" or die "$!->$pos_mhc\n";
@@ -81,7 +82,7 @@ if($gene=~/DRB12/ || $gene=~/DRB13/ || $gene=~/DQB12/ || $gene=~/DQB13/){
 #########################################################################################################
 
 my%hash;my%hash_mat;my%hash_snp;
-`$Bin/blastall -i $path/$sample\_$gene.fasta -d $Bin/Data_type_$version/$gene/$gene.fa -o $path/$sample\_$gene.blast -p blastn -e 10 -v 1 -b 1 -F F -m 8`;
+`$Bin/blastall -i $path/$sample\_$gene.fasta -d $ENV{'CONDA_PREFIX'}/share/database/Data_type_$version/$gene/$gene.fa -o $path/$sample\_$gene.blast -p blastn -e 10 -v 1 -b 1 -F F -m 8`;
 open IN,"< $path/$sample\_$gene.blast" or die "$!->blast\n";
 while(<IN>){
 	chomp;my@ln=split;my$check_mis=0;

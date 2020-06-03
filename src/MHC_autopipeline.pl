@@ -57,6 +57,8 @@ my@gene=qw/A B C DQB1 DRB1 DPA1 DPB1 DQA1 G DMA DMB DOA DOB DRA E F H J K MICA M
 `mkdir -p -m 700 $outdir/$sample` unless(-d "$outdir/$sample");
 open OUT,"> $outdir/$sample/$sample.type";
 
+print "Exon\n"
+
 my%exon;
 open IN,"< $mhc_pos" or die "$!->$mhc_pos\n";
 while(<IN>){
@@ -66,14 +68,17 @@ while(<IN>){
 }
 ##########################################################################################################
 
-unless(-e "$outdir/$sample/$sample\_single_unmap.sam"){`$Bin/samtools view -f 4 $bam|awk '{if(\$3=="chr6")print}' > $outdir/$sample/$sample\_single_unmap.sam`;}
+unless(-e "$outdir/$sample/$sample\_single_unmap.sam"){`$Bin/samtools view -f 4 $bam|awk '{if(\$3=="6")print}' > $outdir/$sample/$sample\_single_unmap.sam`;}
 unless(-e "$outdir/$sample/$sample\_pair_unmap.sam"){`$Bin/samtools view -f 4 $bam|awk '{if(\$3=="*")print}' > $outdir/$sample/$sample\_pair_unmap.sam`;}
 foreach my$kes(sort keys %exon){
 	my($pos1,$pos2) = split /\*/,$exon{$kes};
-	unless(-e "$outdir/$sample/$sample\_$kes.sam"){`$Bin/samtools view $bam chr6:$pos1-$pos2 > $outdir/$sample/$sample\_$kes.sam`;}
-	unless(-e "$outdir/$sample/$sample\_$kes.snp"){`perl $Bin/MHC_sam2snp_blast.pl $outdir/$sample/$sample\_$kes.sam $version > $outdir/$sample/$sample\_$kes.snp`;}
-	unless(-e "$outdir/$sample/$sample\_$kes.ld"){`perl $Bin/MHC_snp2ld_assemble.pl $outdir/$sample/$sample\_$kes.snp $version > $outdir/$sample/$sample\_$kes.ld`;}
-	unless(-e "$outdir/$sample/$sample\_$kes.type"){`perl $Bin/MHC_ld2pretype_score.pl $outdir/$sample/$sample\_$kes.ld $version > $outdir/$sample/$sample\_$kes.type`;}
+	print "samtools view\n";
+	unless(-e "$outdir/$sample/$sample\_$kes.sam"){`$Bin/samtools view $bam 6:$pos1-$pos2 > $outdir/$sample/$sample\_$kes.sam`;}
+	print "MHC_sam2snp_blast\n";
+	unless(-e "$outdir/$sample/$sample\_$kes.snp"){`$Bin/MHC_sam2snp_blast $outdir/$sample/$sample\_$kes.sam $version > $outdir/$sample/$sample\_$kes.snp`;}
+	print "MHC_snp2ld_assemble\n";
+	unless(-e "$outdir/$sample/$sample\_$kes.ld"){`$Bin/MHC_snp2ld_assemble $outdir/$sample/$sample\_$kes.snp $version > $outdir/$sample/$sample\_$kes.ld`;}
+	unless(-e "$outdir/$sample/$sample\_$kes.type"){`$Bin/MHC_ld2pretype_score $outdir/$sample/$sample\_$kes.ld $version > $outdir/$sample/$sample\_$kes.type`;}
 }
 ###########################################################################################################
 
@@ -81,7 +86,8 @@ foreach my$gene(@gene){
 	my@type = glob "$outdir/$sample/$sample\_$gene*type";
 
 	my%gap;my%novel;
-	my@type_database=glob "$Bin/Data_type_$version/*type";
+	#my@type_database=glob "$Bin/Data_type_$version/*type";
+	my@type_database=glob "$ENV{'CONDA_PREFIX'}/share/database/Data_type_$version/*type";
 	foreach my$type_database(@type_database){
 		open IN,"< $type_database";
 		while(<IN>){chomp;my@ln=split;$gap{$ln[0]}++;}
