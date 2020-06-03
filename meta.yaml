@@ -15,14 +15,14 @@ build:
 requirements:
   host:
     - perl 5.26.2
-    - gcc
+    - gcc_linux-64 
     - zlib
   build:
     - perl 5.26.2
-    - gcc
+    - gcc_linux-64
     - zlib
   run:
-    - gcc
+    - gcc_linux-64
     - perl 5.26.2
     - zlib
     - python
