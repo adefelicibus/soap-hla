@@ -57,8 +57,6 @@ my@gene=qw/A B C DQB1 DRB1 DPA1 DPB1 DQA1 G DMA DMB DOA DOB DRA E F H J K MICA M
 `mkdir -p -m 700 $outdir/$sample` unless(-d "$outdir/$sample");
 open OUT,"> $outdir/$sample/$sample.type";
 
-print "Exon\n"
-
 my%exon;
 open IN,"< $mhc_pos" or die "$!->$mhc_pos\n";
 while(<IN>){
